@@ -1,9 +1,9 @@
 # Proyecto : red social con MONGO DB, NODE JS, REACT
 
-## construcción de la api rest aplicando MVC
+## Construcción de la api rest aplicando MVC
 
-## Motivación :muscle:
+## Carpeta Menu : DashBoard Bootstrap5 con React :thumbsup:
 
-> La perseverancia es la base de todas las acciones (Lao Tzu)
+>     :writing_hand: La perseverancia es la base de todas las acciones (Lao Tzu)
 
-> Walter Arias || waltarias@outlook.com
+> Walter Arias || waltarias@outlook.com || SENA
