@@ -1,6 +1,7 @@
 //Controlador para hacer seguimiento a perfiles de usuario
 const Seguir = require("../models/Seguir");
 const Perfil = require("../models/Perfil");
+
 // Accion para guardar el seguimiento a un perfil
 const guardar = async (req, res) => {
   try {
@@ -47,11 +48,49 @@ const borrarSeguir = async (req, res) => {
   }
 };
 //listado de usuarios que sigo
-const siguiendo = async (req, res) => {
-  return res.status(200).send({
-    status: "ok",
-    mensaje: "Perfiles que sigo",
-  });
+const siguiendo = (req, res) => {
+  //pagina inicial para paginacion
+  let page = 1;
+
+  if (req.params.page) {
+    page = req.params.page;
+  }
+  page = parseInt(page);
+  let itemsPerPage = 5;
+
+  const options = {
+    page,
+    limit: itemsPerPage,
+    sort: { _id: 1 },
+  };
+
+  Perfil.paginate({}, options)
+    .then((result) => {
+      if (!result) {
+        return res.status(404).send({
+          status: "error",
+          mensaje: "No hay Registros para mostrar !",
+        });
+      }
+      console.log(result);
+      // devuelve el resultado
+      return res.status(200).send({
+        status: "ok",
+        mensaje: "Listado de seguidores",
+        perfiles: result.docs,
+        page,
+        limite: result.limit,
+        totalpaginas: result.totalPages,
+        registros: result.totalDocs,
+      });
+    })
+    .catch((error) => {
+      return res.status(500).send({
+        status: "error",
+        mensaje: "error al generar el listado",
+        error,
+      });
+    });
 };
 module.exports = {
   guardar,
