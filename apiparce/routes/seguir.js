@@ -5,5 +5,7 @@ const seguirControlador = require("../controllers/Seguir");
 const auth = require("../controllers/auth");
 
 router.post("/seguir/nuevo", auth, seguirControlador.guardar);
+router.delete("/seguir/noseguir/:id", auth, seguirControlador.borrarSeguir);
+router.get("/seguir/siguiendo/:id/:page", auth, seguirControlador.siguiendo);
 
 module.exports = router;
