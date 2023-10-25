@@ -19,9 +19,11 @@ app.use(express.urlencoded({ extended: true }));
 //rutas con MVC
 const rutasPerfil = require("./routes/perfil");
 const rutasSeguir = require("./routes/seguir");
+const rutasPublicaciones = require("./routes/publicaciones");
 
 app.use("/api", rutasPerfil);
 app.use("/api", rutasSeguir);
+app.use("/api", rutasPublicaciones);
 
 app.listen(puerto, () => {
   console.log("server ejecutandose", puerto);

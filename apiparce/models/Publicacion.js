@@ -1,8 +1,8 @@
 const { Schema, model } = require("mongoose");
 const PublicacionSchema = Schema({
-  Usuario: {
+  usuario: {
     type: Schema.ObjectId,
-    ref: "Usuario",
+    ref: "Perfil",
   },
   texto: {
     type: String,

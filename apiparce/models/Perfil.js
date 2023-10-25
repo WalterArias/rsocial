@@ -1,5 +1,4 @@
 //orm de perfil
-
 const { Schema, model } = require("mongoose");
 const mongoosePaginate = require("mongoose-paginate-v2");
 const PerfilSchema = Schema(
