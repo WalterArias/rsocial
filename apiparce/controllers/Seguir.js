@@ -50,14 +50,14 @@ const borrarSeguir = async (req, res) => {
 //listado de usuarios que sigo
 const siguiendo = (req, res) => {
   //pagina inicial para paginacion
-  let page = 1;
+  let page;
 
   if (req.params.page) {
     page = req.params.page;
   }
   page = parseInt(page);
   let itemsPerPage = 5;
-
+  // necesario para el funcionamiento del moongoose paginate v2
   const options = {
     page,
     limit: itemsPerPage,
