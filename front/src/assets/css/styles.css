@@ -186,6 +186,17 @@ body {
 }
 
 
+.especial{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    border-radius: 0.4rem;
+    border: 1px solid var(--color-border-post);
+    padding: 1.5rem;
+}
+
 .posts__post{
     width: 100%;
     display: flex;
@@ -437,3 +448,24 @@ button{
     font-size: 1.4rem;
 }
 
+.flexContainer {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: flex-start;
+  width: 1300px;
+
+    overflow: auto;
+    flex-direction: row;
+}
+
+.flexContainer div {
+
+    display: flex;
+    max-width: 50%;
+   flex : 1 1 100%;
+    padding: 0.5rem 1rem;
+
+    border-radius: 0.3rem;
+}

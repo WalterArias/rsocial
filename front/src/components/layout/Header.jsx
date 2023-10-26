@@ -20,38 +20,16 @@ const Header = () => {
             </li>
 
             <li className="menu-list__item">
-              <NavLink to="/Acerca" className="menu-list__link">
-                <i className="fa-solid fa-list"></i>
-                <span className="menu-list__title">Publicaciones</span>
+              <NavLink to="/Registro" className="menu-list__link">
+                <i class="fa-solid fa-user-plus"></i>
+                <span className="menu-list__title">Registrarse</span>
               </NavLink>
             </li>
-
             <li className="menu-list__item">
-              <NavLink to="/Contacto" className="menu-list__link">
-                <i className="fa-solid fa-user"></i>
-                <span className="menu-list__title">Gente</span>
+              <NavLink to="/Ingresar" className="menu-list__link">
+                <i class="fa-solid fa-right-to-bracket"></i>
+                <span className="menu-list__title">Ingresar</span>
               </NavLink>
-            </li>
-
-            <li className="menu-list__item">
-              <a href="#" className="menu-list__link">
-                <i className="fa-regular fa-envelope"></i>
-                <span className="menu-list__title">Mensajes</span>
-              </a>
-            </li>
-          </ul>
-
-          <ul className="container-lists__list-end">
-            <li className="list-end__item">
-              <a href="#" className="list-end__link-image">
-                <img src="assets/img/user.png" className="list-end__img" alt="Imagen de perfil" />
-              </a>
-            </li>
-            <li className="list-end__item">
-              <a href="#" className="list-end__link">
-                <span className="list-end__name">Juan </span>
-                <i className="fa-solid fa-caret-down"></i>
-              </a>
             </li>
           </ul>
         </div>
