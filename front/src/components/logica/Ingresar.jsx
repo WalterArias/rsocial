@@ -6,23 +6,28 @@ const Ingresar = () => {
       <div className="col">
         <div class="card text-start">
           <div class="card-body">
-            <h4 class="card-title">Ingreso</h4>
+            <h4 class="card-title ">Ingreso</h4>
             <form action="">
               <div className="mb-3">
                 <label for="" className="form-label">
-                  Name
+                  Email
                 </label>
-                <input type="text" className="form-control" name="" id="" aria-describedby="helpId" placeholder="" />
-                <small id="helpId" className="form-text text-muted">
-                  Help text
-                </small>
+                <input type="text" className="form-control" name="" id="" placeholder="" />
               </div>
-              <button type="reset" className="btn btn-secondary m-2">
-                Reset
-              </button>
-              <button type="submit" className="btn btn-primary m-2">
-                Enviar
-              </button>
+              <div className="mb-3">
+                <label for="" className="form-label">
+                  Password
+                </label>
+                <input type="password" className="form-control" name="" id="" placeholder="" />
+              </div>
+              <div class="d-flex justify-content-center p-3">
+                <button type="reset" className="btn btn-secondary m-2">
+                  Reset
+                </button>
+                <button type="submit" className="btn btn-success m-2">
+                  Enviar
+                </button>
+              </div>
             </form>
           </div>
         </div>

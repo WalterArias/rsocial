@@ -15,11 +15,7 @@ const Barra = () => {
             aria-controls="navbarSearch"
             aria-expanded="false"
             aria-label="Toggle search"
-          >
-            {/*  <svg className="bi">
-              <use xlink:href="#search" />
-            </svg> */}
-          </button>
+          ></button>
         </li>
         <li className="nav-item text-nowrap">
           <button

@@ -18,7 +18,7 @@ const PerfilSchema = Schema(
     },
     rol: {
       type: String,
-      required: true,
+      default: "User",
     },
     password: {
       type: String,

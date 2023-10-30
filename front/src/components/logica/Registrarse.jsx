@@ -1,60 +1,100 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
+import HelperForm from "../../helpers/HelperForm";
+import { Global } from "../../helpers/Global";
 
 const Registrarse = () => {
+  const { form, cambiar } = HelperForm({});
+  const [guardado, setGuardado] = useState("no_enviado");
+
+  const guardarPerfil = async (e) => {
+    e.preventDefault();
+    let nuevoPerfil = form;
+
+    //guardar en la api
+    const request = await fetch(Global.url + "perfil/registrar", {
+      method: "POST",
+      body: JSON.stringify(nuevoPerfil),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await request.json();
+    if (data.status == "ok") {
+      setGuardado("Guardado");
+    } else {
+      setGuardado("Error");
+    }
+  };
+
   return (
     <>
       <div className="col">
         <div className="col">
-          <div class="card text-start">
-            <div class="card-body">
-              <h4 class="card-title p-2">Formulario de registro</h4>
-              <form action="">
+          <div className="card text-start">
+            <div className="card-body">
+              <h4 className="card-title p-2">Formulario de registro</h4>
+              {guardado == "Guardado" ? (
+                <div className="alert alert-success" role="alert">
+                  Exito
+                </div>
+              ) : (
+                ""
+              )}
+              {guardado == "Error" ? (
+                <div className="alert alert-danger" role="alert">
+                  Error
+                </div>
+              ) : (
+                ""
+              )}
+
+              <form onSubmit={guardarPerfil}>
                 <div className="mb-3">
                   <input
                     type="text"
                     className="form-control"
-                    name=""
+                    name="nombre"
                     id=""
-                    aria-describedby="helpId"
                     placeholder="Tu nombre Completo ..."
+                    onChange={cambiar}
                   />
                 </div>
                 <div className="mb-3">
                   <input
                     type="text"
                     className="form-control"
-                    name=""
+                    name="apodo"
                     id=""
-                    aria-describedby="helpId"
                     placeholder="Tu apodo ..."
+                    onChange={cambiar}
                   />
                 </div>
                 <div className="mb-3">
                   <input
-                    type="text"
+                    type="email"
                     className="form-control"
-                    name=""
+                    name="email"
                     id=""
-                    aria-describedby="helpId"
                     placeholder="tu email ..."
+                    onChange={cambiar}
                   />
                 </div>
                 <div className="mb-3">
                   <input
-                    type="text"
+                    type="password"
                     className="form-control"
-                    name=""
+                    name="password"
                     id=""
-                    aria-describedby="helpId"
                     placeholder="Ingresa la clave que usaras! ... no la dejes ver de nadie   ...!"
+                    onChange={cambiar}
                   />
                 </div>
-                <div class="d-flex justify-content-center p-3">
+                <div className="d-flex justify-content-center p-3">
                   <button type="reset" className="btn btn-secondary m-2">
                     Reset
                   </button>
                   <button type="submit" className="btn btn-primary m-2">
-                    <i class="bi bi-chat-heart-fill"> Enviar</i>
+                    <i className="bi bi-chat-heart-fill"> Enviar</i>
                   </button>
                 </div>
               </form>

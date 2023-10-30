@@ -1,6 +1,6 @@
+const conexion = require("./models/conexion");
 const express = require("express");
 const cors = require("cors");
-const conexion = require("./models/conexion");
 
 //inicia base de datos
 conexion();

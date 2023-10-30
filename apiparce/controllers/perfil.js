@@ -23,7 +23,7 @@ const registrar = async (req, res) => {
     }).exec();
     // encriptar y salvar
     if (consulta.length > 0) {
-      return res.status(400).json({
+      return res.status(400).send({
         mensaje: "ya existe el email o usuario",
       });
     } else {
@@ -31,7 +31,8 @@ const registrar = async (req, res) => {
       let password = await bcrypt.hash(perfilGuardar.password, 10);
       perfilGuardar.password = password;
       perfilGuardar.save();
-      return res.status(200).json({
+      return res.status(200).send({
+        status: "ok",
         mensaje: "Insertado con exito",
       });
     }
