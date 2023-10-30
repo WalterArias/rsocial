@@ -1,16 +1,20 @@
 import React, { Component, useState } from "react";
 import HelperForm from "../../helpers/HelperForm";
 import { Global } from "../../helpers/Global";
+/* import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content"; */
 
 const Registrarse = () => {
   const { form, cambiar } = HelperForm({});
   const [guardado, setGuardado] = useState("no_enviado");
+  /*   const MySwal = withReactContent(Swal); */
 
   const guardarPerfil = async (e) => {
     e.preventDefault();
     let nuevoPerfil = form;
 
     //guardar en la api
+
     const request = await fetch(Global.url + "perfil/registrar", {
       method: "POST",
       body: JSON.stringify(nuevoPerfil),
@@ -20,8 +24,10 @@ const Registrarse = () => {
     });
     const data = await request.json();
     if (data.status == "ok") {
+      // console.log(data);
       setGuardado("Guardado");
     } else {
+      //  console.log(data);
       setGuardado("Error");
     }
   };
@@ -34,8 +40,9 @@ const Registrarse = () => {
             <div className="card-body">
               <h4 className="card-title p-2">Formulario de registro</h4>
               {guardado == "Guardado" ? (
-                <div className="alert alert-success" role="alert">
-                  Exito
+                <div className="alert alert-warning alert-dismissible fade show" role="alert">
+                  <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+                  <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
               ) : (
                 ""

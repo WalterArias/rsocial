@@ -37,7 +37,7 @@ const registrar = async (req, res) => {
       });
     }
   } catch (error) {
-    return res.status(404).send({
+    return res.status(500).send({
       nombreError: error.name,
       Mensaje: "Error en la consulta : " + error.message,
     });

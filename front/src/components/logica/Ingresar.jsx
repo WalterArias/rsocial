@@ -7,6 +7,7 @@ const Ingresar = () => {
         <div class="card text-start">
           <div class="card-body">
             <h4 class="card-title ">Ingreso</h4>
+
             <form action="">
               <div className="mb-3">
                 <label for="" className="form-label">
