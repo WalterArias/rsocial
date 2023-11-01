@@ -1,27 +1,73 @@
-import React, { Component } from "react";
-
+import React, { Component, useState } from "react";
+import HelperForm from "../../helpers/HelperForm";
+import { Global } from "../../helpers/Global";
+import Dash from "../layout/paginas/Dash";
 const Ingresar = () => {
+  const { form, cambiar } = HelperForm({});
+  const [guardado, setGuardado] = useState("no_enviado");
+  //
+  const loginUsuario = async (e) => {
+    e.preventDefault();
+    let usuarioLogin = form;
+    //guardar en la api
+    const request = await fetch(Global.url + "perfil/login", {
+      method: "POST",
+      body: JSON.stringify(usuarioLogin),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await request.json();
+    //console.log(data);
+    if (data.status == "ok") {
+      // console.log(data);
+      localStorage.setItem("token", data.user.token);
+      localStorage.setItem("usuario", JSON.stringify(data.user.email, data.user.id));
+      setGuardado("Guardado");
+    } else {
+      //  console.log(data);
+      setGuardado("Error");
+    }
+  };
+
+  //render del componente
   return (
     <>
       <div className="col">
-        <div class="card text-start">
-          <div class="card-body">
-            <h4 class="card-title ">Ingreso</h4>
+        <div className="card text-start">
+          <div className="card-body">
+            <h4 className="card-title ">Ingreso</h4>
+            {guardado == "Guardado" ? <Dash /> : ""}
+            {guardado == "Error" ? (
+              <div className="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>error en la insercion!</strong> ...
+                <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            ) : (
+              ""
+            )}
 
-            <form action="">
+            <form onSubmit={loginUsuario}>
               <div className="mb-3">
-                <label for="" className="form-label">
+                <label htmlFor="" className="form-label">
                   Email
                 </label>
-                <input type="text" className="form-control" name="" id="" placeholder="" />
+                <input type="text" className="form-control" name="email" id="" placeholder="" onChange={cambiar} />
               </div>
               <div className="mb-3">
-                <label for="" className="form-label">
+                <label htmlFor="" className="form-label">
                   Password
                 </label>
-                <input type="password" className="form-control" name="" id="" placeholder="" />
+                <input
+                  type="password"
+                  className="form-control"
+                  name="password"
+                  id=""
+                  placeholder=""
+                  onChange={cambiar}
+                />
               </div>
-              <div class="d-flex justify-content-center p-3">
+              <div className="d-flex justify-content-center p-3">
                 <button type="reset" className="btn btn-secondary m-2">
                   Reset
                 </button>

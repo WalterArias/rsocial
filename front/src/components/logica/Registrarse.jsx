@@ -12,9 +12,7 @@ const Registrarse = () => {
   const guardarPerfil = async (e) => {
     e.preventDefault();
     let nuevoPerfil = form;
-
     //guardar en la api
-
     const request = await fetch(Global.url + "perfil/registrar", {
       method: "POST",
       body: JSON.stringify(nuevoPerfil),
@@ -40,16 +38,17 @@ const Registrarse = () => {
             <div className="card-body">
               <h4 className="card-title p-2">Formulario de registro</h4>
               {guardado == "Guardado" ? (
-                <div className="alert alert-warning alert-dismissible fade show" role="alert">
-                  <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+                <div className="alert alert-success alert-dismissible fade show" role="alert">
+                  <strong>Insertado con exito !</strong> ...
                   <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
               ) : (
                 ""
               )}
               {guardado == "Error" ? (
-                <div className="alert alert-danger" role="alert">
-                  Error
+                <div className="alert alert-danger alert-dismissible fade show" role="alert">
+                  <strong>error en la insercion!</strong> ...
+                  <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
               ) : (
                 ""

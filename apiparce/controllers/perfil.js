@@ -182,7 +182,7 @@ const login = async (req, res) => {
 
   //resultado final del método
   return res.status(200).send({
-    resultado: "success",
+    status: "ok",
     mensaje: " Ingreso exitoso !",
     user: {
       id: consulta._id,

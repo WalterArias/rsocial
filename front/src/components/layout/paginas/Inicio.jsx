@@ -17,7 +17,7 @@ const Inicio = () => {
         </NavLink>
 
         <NavLink to="/Ingresar" className="text-decoration-none fs-2 p-3">
-          <i class="bi bi-person-up"></i>
+          <i className="bi bi-person-up"></i>
           Ingresar
         </NavLink>
       </div>
