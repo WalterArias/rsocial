@@ -4,6 +4,14 @@
 let Perfil = require("../models/Perfil");
 let bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+
+/**
+ * Funcion asincronica para Hacer registro de ingreso a la app
+ * @param {*} req la peticion hecha a la api
+ * @param {*} res la respuesta enviada por la api
+ * @returns {json object} mensaje de insercion exitosa
+ */
+
 const registrar = async (req, res) => {
   try {
     let datos = req.body;

@@ -1,7 +1,7 @@
 import React, { Component, useState } from "react";
 import HelperForm from "../../helpers/HelperForm";
 import { Global } from "../../helpers/Global";
-import Dash from "../layout/paginas/Dash";
+import Dash from "../private/LayoutPrivado";
 const Ingresar = () => {
   const { form, cambiar } = HelperForm({});
   const [guardado, setGuardado] = useState("no_enviado");
@@ -18,14 +18,14 @@ const Ingresar = () => {
       },
     });
     const data = await request.json();
-    //console.log(data);
+
     if (data.status == "ok") {
       // console.log(data);
       localStorage.setItem("token", data.user.token);
-      localStorage.setItem("usuario", JSON.stringify(data.user.email, data.user.id));
+      localStorage.setItem("email", JSON.stringify(data.user.email));
+      localStorage.setItem("id", JSON.stringify(data.user.id));
       setGuardado("Guardado");
     } else {
-      //  console.log(data);
       setGuardado("Error");
     }
   };

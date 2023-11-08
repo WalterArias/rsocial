@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 const rutasPerfil = require("./routes/perfil");
 const rutasSeguir = require("./routes/seguir");
 const rutasPublicaciones = require("./routes/publicaciones");
-
+/* .get('/', (req, res) => res.render('pages/index')) */
 app.use("/api", rutasPerfil);
 app.use("/api", rutasSeguir);
 app.use("/api", rutasPublicaciones);
