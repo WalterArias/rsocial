@@ -57,8 +57,13 @@ const listar = async (req, res) => {
     let limite = req.params.limite;
     let consulta = await Perfil.find({}).sort({ _id: -1 }).limit(limite).exec();
     return res.status(200).send({
+      status: "ok",
+      mensaje: " Ingreso exitoso !",
       longitud_resultado: consulta.length,
-      resultado: consulta,
+      user: {
+        id: consulta._id,
+        email: consulta.email,
+      },
     });
   } catch (error) {
     return res.status(404).send({
@@ -100,7 +105,14 @@ const listarUno = async (req, res) => {
     let id = req.params.id;
     consulta = await Perfil.findById(id).exec();
     return res.status(200).send({
-      resultado: consulta,
+      status: "ok",
+      mensaje: " Ingreso exitoso !",
+      user: {
+        id: consulta._id,
+        email: consulta.email,
+        nombre: consulta.nombre,
+        apodo: consulta.apodo,
+      },
     });
   } catch (error) {
     return res.status(404).send({
@@ -147,7 +159,6 @@ const editar = async (req, res) => {
 const login = async (req, res) => {
   //datos de la peticion (body)
   let data = req.body;
-
   //validamos que la data esté completa
   if (!data.email || !data.password) {
     res.status(400).send({
@@ -155,15 +166,12 @@ const login = async (req, res) => {
       mensaje: "faltan datos por enviar del formulario ! ",
     });
   }
-
   // buscar en la bd el usuario  y validar
-
   let consulta = await Perfil.findOne({ email: data.email }).exec();
   if (consulta == null) {
     return res.status(400).send({
       resultado: "error",
       mensaje: "Usuario no existe en la BD",
-      consulta,
     });
   } else {
     let pwd = bcrypt.compareSync(data.password, consulta.password);
@@ -174,9 +182,7 @@ const login = async (req, res) => {
       });
     }
   }
-
   //generamos el token  --- sencillo
-
   const token = jwt.sign(
     {
       userId: consulta._id,
@@ -195,8 +201,8 @@ const login = async (req, res) => {
     user: {
       id: consulta._id,
       email: consulta.email,
-      token: token,
     },
+    token: token,
   });
 };
 

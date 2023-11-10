@@ -17,9 +17,8 @@ const storage = multer.diskStorage({
 });
 
 const uploads = multer({ storage });
-
 router.post("/perfil/registrar", perfilControlador.registrar);
-router.get("/perfil/listar/:limite?", auth, perfilControlador.listar);
+router.get("/perfil/listar/:limite?", perfilControlador.listar);
 router.get("/perfil/listarUno/:id", auth, perfilControlador.listarUno);
 router.delete("/perfil/borrarUno/:id", auth, perfilControlador.borrarUno);
 router.post("/perfil/upload/:id", auth, uploads.single("file0"), perfilControlador.upload);

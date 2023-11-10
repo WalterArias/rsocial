@@ -2,9 +2,11 @@ import React, { Component, useState } from "react";
 import HelperForm from "../../helpers/HelperForm";
 import { Global } from "../../helpers/Global";
 import Dash from "../private/LayoutPrivado";
+import UseAuth from "../../helpers/UseAuth";
 const Ingresar = () => {
   const { form, cambiar } = HelperForm({});
   const [guardado, setGuardado] = useState("no_enviado");
+  const { setAutenticado } = UseAuth();
   //
   const loginUsuario = async (e) => {
     e.preventDefault();
@@ -21,10 +23,15 @@ const Ingresar = () => {
 
     if (data.status == "ok") {
       // console.log(data);
-      localStorage.setItem("token", data.user.token);
-      localStorage.setItem("email", JSON.stringify(data.user.email));
-      localStorage.setItem("id", JSON.stringify(data.user.id));
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
+
       setGuardado("Guardado");
+      setAutenticado(data.user);
+      //redireccion
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
     } else {
       setGuardado("Error");
     }
@@ -37,7 +44,13 @@ const Ingresar = () => {
         <div className="card text-start">
           <div className="card-body">
             <h4 className="card-title ">Ingreso</h4>
-            {guardado == "Guardado" ? <Dash /> : ""}
+            {guardado == "Guardado" ? (
+              <div class="alert alert-primary" role="alert">
+                Credenciales correctas
+              </div>
+            ) : (
+              ""
+            )}
             {guardado == "Error" ? (
               <div className="alert alert-danger alert-dismissible fade show" role="alert">
                 <strong>error en la insercion!</strong> ...
