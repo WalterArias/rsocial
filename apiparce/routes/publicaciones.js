@@ -21,10 +21,6 @@ const uploads = multer({ storage });
 router.post("/publicacion/crear", auth, publicacionControlador.crear);
 router.get("/publicacion/detallePublicacion/:id", auth, publicacionControlador.detallePublicacion);
 router.delete("/publicacion/eliminarPublicacion/:id", auth, publicacionControlador.eliminarPublicacion);
-/* router.get("/perfil/listar/:limite?", auth, perfilControlador.listar);
-router.get("/perfil/listarUno/:id", perfilControlador.listarUno);
-router.delete("/perfil/borrarUno/:id", perfilControlador.borrarUno);
-router.post("/perfil/upload/:id", uploads.single("file0"), perfilControlador.upload);
-router.put("/perfil/editar/:id", perfilControlador.editar);
-router.post("/perfil/login", perfilControlador.login); */
+router.get("/perfil/listarTodas/:page", auth, publicacionControlador.listarTodas);
+
 module.exports = router;

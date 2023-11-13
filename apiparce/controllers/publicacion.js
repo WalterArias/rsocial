@@ -46,6 +46,51 @@ const detallePublicacion = async (req, res) => {
   }
 };
 
+//listar todas las publicaciones de los que sigo
+const listarTodas = (req, res) => {
+  //pagina actual
+  let page;
+  if (req.params.page) {
+    page = req.params.page;
+  }
+  page = parseInt(page);
+  let itemsPerPage = 5;
+  // necesario para el funcionamiento del moongoose paginate v2
+  const options = {
+    page,
+    limit: itemsPerPage,
+    sort: { _id: 1 },
+  };
+
+  Publicacion.paginate({}, options)
+    .then((result) => {
+      if (!result) {
+        return res.status(404).send({
+          status: "error",
+          mensaje: "No hay Registros para mostrar !",
+        });
+      }
+      console.log(result);
+      // devuelve el resultado
+      return res.status(200).send({
+        status: "ok",
+        mensaje: "Listado de publicaciones",
+        perfiles: result.docs,
+        page,
+        limite: result.limit,
+        totalpaginas: result.totalPages,
+        registros: result.totalDocs,
+      });
+    })
+    .catch((error) => {
+      return res.status(500).send({
+        status: "error",
+        mensaje: "error al generar el listado",
+        error,
+      });
+    });
+};
+
 // solo puedo eliminar mis publicaciones !
 const eliminarPublicacion = async (req, res) => {
   let idPublicacion = req.params.id;
@@ -70,4 +115,4 @@ const eliminarPublicacion = async (req, res) => {
   }
 };
 
-module.exports = { crear, detallePublicacion, eliminarPublicacion };
+module.exports = { crear, detallePublicacion, eliminarPublicacion, listarTodas };

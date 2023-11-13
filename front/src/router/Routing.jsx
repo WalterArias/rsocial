@@ -18,7 +18,6 @@ const Routing = () => {
       <AuthProvider>
         <Routes>
           {/*rutas publicas */}
-
           <Route path="/" element={<LayoutPublico />}>
             <Route index element={<Inicio />} />
             <Route path="/Registro" element={<Registrarse />} />

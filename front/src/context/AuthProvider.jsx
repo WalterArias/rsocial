@@ -2,6 +2,13 @@ import React from "react";
 import { useState, useEffect, createContext } from "react";
 import { Global } from "../helpers/Global";
 
+/**
+ * Service provider para validar credenciales del localstorage vs credenciales
+ * Crea un objeto o variable de contexto para usar en toda la aplicacion
+ * Genera un estado = Autenticado
+ * returns el authcontext.provider => proveedor de servicio de autenticacion
+ */
+//crea el contexto(supervariable, variable de session como las de PHP)
 const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [Autenticado, setAutenticado] = useState({});

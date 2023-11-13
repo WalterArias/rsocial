@@ -32,7 +32,7 @@ const PerfilSchema = Schema(
       default: Date.now,
     },
   },
-  { collection: "aprendiz" }
+  { collection: "perfil" }
 );
 PerfilSchema.plugin(mongoosePaginate);
 module.exports = model("Perfil", PerfilSchema, "perfil");
