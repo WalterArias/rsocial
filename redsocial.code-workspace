@@ -7,5 +7,8 @@
 			"path": "apiparce"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"editor.fontFamily": "Fira Code",
+		"editor.fontSize": 12
+	}
 }

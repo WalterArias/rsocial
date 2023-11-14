@@ -1,7 +1,7 @@
 //controlador de publicaciones
 let Publicacion = require("../models/Publicacion");
 
-const crear = (req, res) => {
+const crear = async (req, res) => {
   const params = req.body;
   if (!params.texto) {
     return res.status(404).send({
@@ -17,7 +17,7 @@ const crear = (req, res) => {
     return res.status(200).send({
       status: "ok",
       mensaje: "Exitosa",
-      publicacionNueva,
+      // publicacionNueva,
     });
   } catch (error) {
     return res.status(500).send({
@@ -54,7 +54,7 @@ const listarTodas = (req, res) => {
     page = req.params.page;
   }
   page = parseInt(page);
-  let itemsPerPage = 5;
+  let itemsPerPage = 4;
   // necesario para el funcionamiento del moongoose paginate v2
   const options = {
     page,
@@ -70,16 +70,16 @@ const listarTodas = (req, res) => {
           mensaje: "No hay Registros para mostrar !",
         });
       }
-      console.log(result);
+
       // devuelve el resultado
       return res.status(200).send({
         status: "ok",
-        mensaje: "Listado de publicaciones",
-        perfiles: result.docs,
+        mensaje: "Ejecución exitosa !",
+        publicaciones: result.docs,
         page,
         limite: result.limit,
-        totalpaginas: result.totalPages,
-        registros: result.totalDocs,
+        totalPaginas: result.totalPages,
+        totalRegistros: result.totalDocs,
       });
     })
     .catch((error) => {

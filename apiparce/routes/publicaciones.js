@@ -21,6 +21,6 @@ const uploads = multer({ storage });
 router.post("/publicacion/crear", auth, publicacionControlador.crear);
 router.get("/publicacion/detallePublicacion/:id", auth, publicacionControlador.detallePublicacion);
 router.delete("/publicacion/eliminarPublicacion/:id", auth, publicacionControlador.eliminarPublicacion);
-router.get("/perfil/listarTodas/:page", auth, publicacionControlador.listarTodas);
+router.get("/publicacion/listarTodas/:page", auth, publicacionControlador.listarTodas);
 
 module.exports = router;

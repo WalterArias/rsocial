@@ -1,7 +1,7 @@
 import React, { Component, useState } from "react";
 import HelperForm from "../../helpers/HelperForm";
 import { Global } from "../../helpers/Global";
-import Dash from "../private/LayoutPrivado";
+
 import UseAuth from "../../helpers/UseAuth";
 const Ingresar = () => {
   const { form, cambiar } = HelperForm({});
@@ -45,7 +45,7 @@ const Ingresar = () => {
           <div className="card-body">
             <h4 className="card-title ">Ingreso</h4>
             {guardado == "Guardado" ? (
-              <div class="alert alert-primary" role="alert">
+              <div className="alert alert-primary" role="alert">
                 Credenciales correctas
               </div>
             ) : (
