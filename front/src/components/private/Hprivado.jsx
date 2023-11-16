@@ -17,12 +17,12 @@ const Hprivado = () => {
             <NavLink to="/social">Inicio</NavLink>
           </li>
           <li className="nav-item btn btn-light">
-            <NavLink to="Perfil">Perfil</NavLink>
+            <NavLink to="Perfil">Mi Perfil</NavLink>
           </li>
           <li className="nav-item btn btn-light">
-            <NavLink to="/">otro</NavLink>
+            <NavLink to="Gente">Gente</NavLink>
           </li>
-          <li className="nav-item" class="btn btn-light">
+          <li className="nav-item btn btn-light">
             <NavLink to="Logout">Salir</NavLink>
           </li>
         </ul>

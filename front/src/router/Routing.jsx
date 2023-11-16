@@ -8,6 +8,7 @@ import Ingresar from "../components/public/Ingresar";
 import DashBoard from "../components/private/DashBoard";
 import LayoutPrivado from "../components/private/LayoutPrivado";
 import MiPerfil from "../components/private/MiPerfil";
+import Gente from "../components/private/Gente";
 import Logout from "../components/private/Logout";
 import { AuthProvider } from "../context/AuthProvider";
 
@@ -27,6 +28,7 @@ const Routing = () => {
           <Route path="/social/" element={<LayoutPrivado />}>
             <Route index element={<DashBoard />} />
             <Route path="Perfil" element={<MiPerfil />} />
+            <Route path="Gente" element={<Gente />} />
             <Route path="Logout" element={<Logout />} />
           </Route>
 

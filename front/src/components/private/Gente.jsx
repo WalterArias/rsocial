@@ -1,53 +1,68 @@
 import React, { useEffect, useState } from "react";
 import { Global } from "../../helpers/Global";
 import UseAuth from "../../helpers/UseAuth";
-import Publicacion from "./Publicacion";
-const DashBoard = () => {
+
+const Gente = () => {
   const { Autenticado } = UseAuth();
-  const [publicaciones, setPublicaciones] = useState([]);
-
+  const [perfiles, setPerfiles] = useState([]);
   const [page, setPage] = useState(1);
-  useEffect(() => {
-    obtenerPublicaciones();
-  }, []);
 
-  const obtenerPublicaciones = async (nextPage = 1) => {
-    const request = await fetch(Global.url + "publicacion/listarTodas/" + nextPage, {
+  useEffect(() => {
+    obtenerPerfiles();
+  }, []);
+  const obtenerPerfiles = async (nextPage = 1) => {
+    const perfil = await fetch(Global.url + "perfil/listar/" + nextPage, {
       method: "GET",
       headers: {
         "Content-type": "application/json",
         Authorization: localStorage.getItem("token"),
       },
     });
-    const data = await request.json();
-    if (data.status === "ok") {
-      setPublicaciones(data.publicaciones);
+    const datos = await perfil.json();
+    if (datos.status === "ok") {
+      setPerfiles(datos.perfiles);
     }
   };
-
   const NextPage = () => {
     let next = page + 1;
     setPage(next);
-    obtenerPublicaciones(next);
+    obtenerPerfiles(next);
   };
-
+  //render del componente
   return (
     <>
       <div className="col-8">
         <div className="card">
-          <div className="card-header text-bg-primary bg-gradient">Publicaciones</div>
+          <div className="card-header text-bg-primary bg-gradient"> Gente de la red </div>
 
           <div className="card-body">
-            {publicaciones.map((publicacion) => {
+            {perfiles.map((perfil) => {
               return (
-                <>
-                  <div className="card m-2" key={publicacion._id}>
-                    <div className="card-body mt-1">
-                      <span className="card-title fw-light">{"perfiles.apodo"} dice :</span>
-                      <p className="card-text p-2">{publicacion.texto}</p>
+                <div className="card" key={perfil._id}>
+                  <div className="card-body">
+                    <div className="row">
+                      <div className="col-4">foto</div>
+                      <div className="col-6">
+                        <strong>Nombre: </strong>
+                        {perfil.nombre}
+                        <br />
+                        <strong>Mi apodo: </strong>
+                        {perfil.apodo}
+                        <br />
+                        <strong>Email: </strong>
+                        {perfil.email}
+                      </div>
+                      <div className="col-2">
+                        <button type="button" class="btn btn-outline-success btn-sm" onClick={"sie"}>
+                          Seguir
+                        </button>
+                        <button type="button" class="btn btn-outline-danger btn-sm" onClick={"sie"}>
+                          No seguir
+                        </button>
+                      </div>
                     </div>
                   </div>
-                </>
+                </div>
               );
             })}
           </div>
@@ -56,7 +71,6 @@ const DashBoard = () => {
           </button>
           <br />
         </div>
-        <div className="col-4"></div>
       </div>
       <div className="col-4">
         <div className="card">
@@ -71,7 +85,6 @@ const DashBoard = () => {
                 <span className="badge bg-secondary m-1 p-2">Publicaciones :100</span>
               </div>
             </div>
-            <Publicacion />
           </div>
         </div>
       </div>
@@ -79,4 +92,4 @@ const DashBoard = () => {
   );
 };
 
-export default DashBoard;
+export default Gente;
