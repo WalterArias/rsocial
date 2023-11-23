@@ -126,10 +126,10 @@ const listarUno = async (req, res) => {
   try {
     //obtener el id
     let id = req.params.id;
-    consulta = await Perfil.findById(id).exec();
+    let consulta = await Perfil.findById(id).select({ password: 0, rol: 0 }).exec();
     return res.status(200).send({
       status: "ok",
-      mensaje: " Ingreso exitoso !",
+      mensaje: " Consulta exitosa !",
       user: {
         id: consulta._id,
         email: consulta.email,
@@ -149,7 +149,7 @@ const borrarUno = async (req, res) => {
   try {
     //obtener el id
     let id = req.params.id;
-    consulta = await Perfil.findOneAndDelete(id).exec();
+    let consulta = await Perfil.findOneAndDelete(id).exec();
     return res.status(200).send({
       resultado: "success",
     });

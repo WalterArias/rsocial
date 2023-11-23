@@ -51,20 +51,22 @@ const borrarSeguir = async (req, res) => {
 const siguiendo = (req, res) => {
   //pagina inicial para paginacion
   let page;
-
+  let id = req.params.id;
   if (req.params.page) {
     page = req.params.page;
   }
   page = parseInt(page);
   let itemsPerPage = 5;
   // necesario para el funcionamiento del moongoose paginate v2
+  const query = { perfil: "651ea0b505a56b9730c1d31c" };
   const options = {
+    sort: { _id: 1 },
+    populate: { path: "perfil seguido", select: "nombre email" },
     page,
     limit: itemsPerPage,
-    sort: { _id: 1 },
   };
 
-  Perfil.paginate({}, options)
+  Seguir.paginate(query, options)
     .then((result) => {
       if (!result) {
         return res.status(404).send({
@@ -72,7 +74,7 @@ const siguiendo = (req, res) => {
           mensaje: "No hay Registros para mostrar !",
         });
       }
-      console.log(result);
+
       // devuelve el resultado
       return res.status(200).send({
         status: "ok",
@@ -92,8 +94,35 @@ const siguiendo = (req, res) => {
       });
     });
 };
+
+/**
+ * consulta de ejemplo usando populate para ejecutar una consulta con colecciones interconectadas 
+ * en este caso seguir -->perfil
+ @description
+ @param {*} req peticion de entrada
+ @param {*} res respuesta de la consulta
+ @returns (consulta) objeto json con el resultado de la consulta
+ */
+const test = async (req, res) => {
+  try {
+    //obtener el id
+    let id = req.params.id;
+    let consulta = await Seguir.find({ perfil: id }).populate("seguido", "-rol -password -__v").exec();
+    return res.status(200).send({
+      status: "ok",
+      mensaje: " Consulta exitosa !",
+      consulta,
+    });
+  } catch (error) {
+    return res.status(404).send({
+      nombreError: error.name,
+      Mensaje: "Error en la consulta : " + error.message,
+    });
+  }
+};
 module.exports = {
   guardar,
   borrarSeguir,
   siguiendo,
+  test,
 };

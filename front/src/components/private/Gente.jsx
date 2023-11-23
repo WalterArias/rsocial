@@ -41,7 +41,7 @@ const Gente = () => {
                 <div className="card" key={perfil._id}>
                   <div className="card-body">
                     <div className="row">
-                      <div className="col-4">foto</div>
+                      <div className="col-2">foto</div>
                       <div className="col-6">
                         <strong>Nombre: </strong>
                         {perfil.nombre}
@@ -52,11 +52,11 @@ const Gente = () => {
                         <strong>Email: </strong>
                         {perfil.email}
                       </div>
-                      <div className="col-2">
-                        <button type="button" class="btn btn-outline-success btn-sm" onClick={"sie"}>
+                      <div className="col-4">
+                        <button type="button" class="btn btn-outline-success btn-sm m-1" onClick={"sie"}>
                           Seguir
                         </button>
-                        <button type="button" class="btn btn-outline-danger btn-sm" onClick={"sie"}>
+                        <button type="button" class="btn btn-outline-danger btn-sm m-1" onClick={"sie"}>
                           No seguir
                         </button>
                       </div>
